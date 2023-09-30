@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(239, 245, 251);
+    background-color: lavender;
 }
 
 h1 {
@@ -39,20 +39,23 @@ button {
     margin-top: 15px;
     margin-bottom: 15px;
     width: 300px;
-    background-color: rgb(162, 199, 228);
-    border-radius: 75px;
+    background-color: darkslateblue;
+    border-radius: 25px;
+    color: white;
 }
 
 button:hover {
     cursor: pointer;
-    background-color: rgb(90, 125, 154);
-    color: white;
+    background-color:rgb(251, 147, 199);
 }
 
 .container {
     border: 3px solid black;
-    padding: 100px;
-    margin: 25px;
+    background: white;
+    border-radius: 25px;
+    padding: 50px;
+    width: 90%;
+    margin: 100px auto 0px;
 }
 
 .score {
