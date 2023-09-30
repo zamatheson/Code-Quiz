@@ -1,4 +1,4 @@
-const questions [
+const questions = [
     {
         title: "Commonly used data types DO NOT include...",
         choices: [
@@ -45,3 +45,5 @@ const questions [
         ]  
     }
 ];
+
+
