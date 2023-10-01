@@ -1,5 +1,6 @@
 const question = document.getElementById('question');
 const answer = Array.from(document.getElementsByClassName("answer"));
+const resultDiv = document.getElementById("result");
 
 var currentQuestion = {};
 var openQuiz = false;
@@ -71,6 +72,7 @@ function startGame() {
 startGame();
 
 function newQuestion() {
+    resultDiv.textContent = '';
     progressTracker++;
     const questionIndex = Math.floor(Math.random() * allQuestions.length);
     currentQuestion = allQuestions[questionIndex];
@@ -79,9 +81,45 @@ function newQuestion() {
     answer.forEach(function(answerEl, index) {
         const answerText = currentQuestion.answer[index]["answer" + (index +1)];
         answerEl.innerHTML = answerText;
-    });
+});
 
-    allQuestions.splice(questionIndex, 1);
+function answerClickHandler(index) {
+    return function() {
+        if (index + 1 === currentQuestion.valid) {
+            resultDiv.textContent = 'Correct!';
+            score++;
+        } else {
+            resultDiv.textContent = 'Wrong!';
+        }
+
+        
+        answer[index].removeEventListener('click', answerClickHandler(index));
+
+        
+        allQuestions.splice(questionIndex, 1);
+        if (progressTracker < quizquestions.length) {
+            setTimeout(function() {
+                newQuestion();
+            }, 400); 
+        } else {
+            
+            question.innerHTML = `Quiz Complete! Your Score: ${score} out of ${quizquestions.length}`;
+        }
+    };
+}
+
+answer.forEach(function(answerEl, index) {
+    const answerText = currentQuestion.answer[index]["answer" + (index + 1)];
+    answerEl.innerHTML = answerText;
+
+    answerEl.addEventListener('click', answerClickHandler(index));
+});
+
+
+
+
+
+
 
     openQuiz = true;
 };
