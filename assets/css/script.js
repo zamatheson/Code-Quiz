@@ -105,6 +105,12 @@ function newQuestion() {
     resultDiv.textContent = '';
     progressTracker++;
 
+    if (allQuestions.legnth === 0) {
+        question.innerHTML = `All Done! Score: ${score}`;
+        endQuiz();
+        return;
+    }
+
     const questionIndex = Math.floor(Math.random() * allQuestions.length);
 
     currentQuestion = allQuestions[questionIndex];
@@ -114,6 +120,7 @@ function newQuestion() {
         const answerText = currentQuestion.answer[index]["answer" + (index +1)];
         answerEl.innerHTML = answerText;
     });
+    allQuestions.splice(questionIndex, 1);
 }
 
 function answerClickHandler(index) {
@@ -128,9 +135,7 @@ function answerClickHandler(index) {
         }
 
         answer[index].removeEventListener('click', answerClickHandler(index));
-        const questionIndex = Math.floor(Math.random() * allQuestions.length);
-
-        allQuestions.splice(questionIndex, 1);
+       
         if (progressTracker < quizquestions.length) {
             setTimeout(function() {
                 newQuestion();
