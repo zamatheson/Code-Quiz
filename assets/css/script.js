@@ -2,6 +2,7 @@ const question = document.getElementById('question');
 const answer = Array.from(document.getElementsByClassName("answer"));
 const resultDiv = document.getElementById("result");
 const showTimer = document.getElementById("timer");
+const timePenalty = 10;
 
 
 var currentQuestion = {};
@@ -9,6 +10,7 @@ var openQuiz = false;
 var score = 0;
 var progressTracker = 0;
 var allQuestions = [];
+var usedQuestions = [];
 var timer;
 var timerCount = 75;
 
@@ -102,7 +104,9 @@ startGame();
 function newQuestion() {
     resultDiv.textContent = '';
     progressTracker++;
+
     const questionIndex = Math.floor(Math.random() * allQuestions.length);
+
     currentQuestion = allQuestions[questionIndex];
     question.innerHTML = currentQuestion.question;
 
@@ -117,8 +121,10 @@ function answerClickHandler(index) {
         if (index + 1 === currentQuestion.valid) {
             resultDiv.textContent = 'Correct!';
             score++;
+            timerCount += timePenalty;
         } else {
             resultDiv.textContent = 'Wrong!';
+            timerCount -= timePenalty;
         }
 
         answer[index].removeEventListener('click', answerClickHandler(index));
@@ -131,10 +137,10 @@ function answerClickHandler(index) {
             }, 400); 
         } else {
             question.innerHTML = `All Done! Score: ${score}`;
+            endQuiz();
         }
     };
 }
-
 
 answer.forEach(function(answerEl, index) {
     const answerText = currentQuestion.answer[index]["answer" + (index + 1)];
@@ -144,19 +150,9 @@ answer.forEach(function(answerEl, index) {
 });
 
 function endQuiz() {
-    document.getElementById("quiz").style.display = none;
-
-    namesubmit.style.display= block;
-
-    submit.addEventListener('click', function() {
-        const namebox = document.getElementById("namebox").value;
-
-        if (namebox.trim() !== '') {
-            localStorage.setItem('namebox', namebox);
-            localStorage.setItem('score', score);
-            nameboxInput.value = '';
-        } else {
-            alert("Please enter a name.")
-        }
+    answer.forEach(function(answerEl){
+        answerEl.style.display = 'none';
     });
-}
+    question.innerHTML = `All Done! Score: ${score}`;
+    namesubmit.style.display = 'block';
+};

@@ -65,10 +65,6 @@ button:hover {
     color:rgb(251, 147, 199);
 }
 
-.namesubmit {
-    display: none;
-}
-
 .highscorespage {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align: center;
@@ -92,5 +88,11 @@ button:hover {
 
 .lastscore {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
+.scoresubmit {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: auto;
     text-align: center;
 }
