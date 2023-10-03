@@ -5,3 +5,4 @@ This is a quiz designed for coding students to test themselves and their newfoun
 <img width="1460" alt="Screenshot 2023-10-02 at 11 25 58 PM" src="https://github.com/zamatheson/Code-Quiz/assets/140024933/d78215a2-0e2b-415e-aeb7-1638e54e1d2d">
 
 # URL
+https://zamatheson.github.io/Code-Quiz/ 
